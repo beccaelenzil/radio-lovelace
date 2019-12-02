@@ -5,21 +5,40 @@ import "./styles/Track.css";
 
 // Here we use destructuring to extract the props into separate variables
 // See https://wesbos.com/destructuring-objects/
-const Track = ({title, artist, playtime, albumart, favorite}) => {
+//const Track = ({title, artist, playtime, albumart, favorite}) => {
+
+class Track extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = {favorite: false}
+  }
+
+  handleCheckBox = () => {
+    console.log("toggle in track")
+    this.props.toggleCallback(this.props.index, this.props.side)
+  }
+
+  handleTrackToTop = () => {
+    this.props.moveToTopCallback(this.props.index, this.props.side)
+  }
+
+  render(){
   return (
     <li className="track">
-      <img className="track--albumart" alt={`album art for ${title}`} src={albumart} />
-      <h3 className="track--title">{title}</h3>
+      <img className="track--albumart" alt={`album art for ${this.props.title}`} src={this.props.albumart} />
+      <h3 className="track--title">{this.props.title}</h3>
       <input
         type="checkbox"
         className="track--favorite"
-        checked={favorite}
+        checked={this.state.favorite}
+        onChange={this.handleCheckBox}
       />
-      <p className="track--artist">{artist}</p>
-      <p className="track--playtime">{playtime}</p>
+      <p className="track--artist">{this.props.artist}</p>
+      <p className="track--playtime">{this.props.playtime}</p>
       <button
         className="track--control track--to-top"
-        >
+        onClick={this.handleTrackToTop}>
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
@@ -29,6 +48,7 @@ const Track = ({title, artist, playtime, albumart, favorite}) => {
       </button>
     </li>
   );
+  }
 };
 
 Track.propTypes = {
