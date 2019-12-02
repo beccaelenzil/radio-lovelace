@@ -7,38 +7,33 @@ import "./styles/Track.css";
 // See https://wesbos.com/destructuring-objects/
 //const Track = ({title, artist, playtime, albumart, favorite}) => {
 
-class Track extends React.Component{
+  const Track = (props) => {
 
-  constructor(props){
-    super(props)
-    this.state = {favorite: false}
-  }
-
-  handleCheckBox = () => {
+  const handleCheckBox = () => {
     console.log("toggle in track")
-    this.props.toggleCallback(this.props.index, this.props.side)
+    props.toggleCallback(props.index, props.side)
   }
 
-  handleTrackToTop = () => {
-    this.props.moveToTopCallback(this.props.index, this.props.side)
+  const handleTrackToTop = () => {
+    props.moveToTopCallback(props.index, props.side)
   }
 
-  render(){
+
   return (
     <li className="track">
-      <img className="track--albumart" alt={`album art for ${this.props.title}`} src={this.props.albumart} />
-      <h3 className="track--title">{this.props.title}</h3>
+      <img className="track--albumart" alt={`album art for ${props.title}`} src={props.albumart} />
+      <h3 className="track--title">{props.title}</h3>
       <input
         type="checkbox"
         className="track--favorite"
-        checked={this.state.favorite}
-        onChange={this.handleCheckBox}
+        checked={!props.favorite}
+        onChange={handleCheckBox}
       />
-      <p className="track--artist">{this.props.artist}</p>
-      <p className="track--playtime">{this.props.playtime}</p>
+      <p className="track--artist">{props.artist}</p>
+      <p className="track--playtime">{props.playtime}</p>
       <button
         className="track--control track--to-top"
-        onClick={this.handleTrackToTop}>
+        onClick={handleTrackToTop}>
         <span role="img" aria-label="send to top">🔝</span>
       </button>
       <button
@@ -48,7 +43,6 @@ class Track extends React.Component{
       </button>
     </li>
   );
-  }
 };
 
 Track.propTypes = {

@@ -56,7 +56,6 @@ const Playlist = (props) => {
       return trackElements
   }
 
-  //render() {
     const trackElements = organizeTracks()
     const trackCount = props.tracks.length;
     const playtime = calculatePlayTime(props.tracks);
@@ -72,7 +71,6 @@ const Playlist = (props) => {
       </ul>
     </div>
   );
-  //}
 }
 
 Playlist.propTypes = {
