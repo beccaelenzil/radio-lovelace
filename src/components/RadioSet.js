@@ -36,6 +36,7 @@ class RadioSet extends React.Component{
       let theTracks = this.state.eveningTracks
       const theTrack = theTracks[trackIndex]
       theTrack.favorite = !theTrack.favorite
+      console.log(theTracks[trackIndex].favorite)
       this.setState({eveningTracks: theTracks})
     }
   }

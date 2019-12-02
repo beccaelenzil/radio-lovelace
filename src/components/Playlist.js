@@ -25,36 +25,30 @@ const calculatePlayTime = (tracks) => {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-class Playlist extends React.Component {
+const Playlist = (props) => {
+//class Playlist extends React.Component {
 
-  constructor(props){
-    super(props)
-    //this.state = {
-    //  tracks: this.props.tracks
-    //}
-  }
-
-  toggleFavorite = (trackIndex, side) => {
+  const toggleFavorite = (trackIndex, side) => {
     console.log("toggle in playlist")
-    this.props.toggleCallback(trackIndex, side)
+    props.toggleCallback(trackIndex, side)
   }
 
-  moveToTop = (trackIndex, side) => {
+  const moveToTop = (trackIndex, side) => {
     console.log(`Move To Top in Playlist `, trackIndex)
-    this.props.moveToTopCallback(trackIndex, side)
+    props.moveToTopCallback(trackIndex, side)
   }
 
-  organizeTracks = () => {
-      const trackElements = this.props.tracks.map((track, i) => {
+  const organizeTracks = () => {
+      const trackElements = props.tracks.map((track, i) => {
         // We use "spread syntax" here to pass in all the properties of 
         // the variable 'track' as props. Go look it up!
         return (
           <Track
             key={i}//{track.id}
             index={i}
-            moveToTopCallback={this.moveToTop}
-            toggleCallback={this.toggleFavorite}
-            side={this.props.side}
+            moveToTopCallback={moveToTop}
+            toggleCallback={toggleFavorite}
+            side={props.side}
             {...track}
           />
         );
@@ -62,14 +56,14 @@ class Playlist extends React.Component {
       return trackElements
   }
 
-  render() {
-    const trackElements = this.organizeTracks()
-    const trackCount = this.props.tracks.length;
-    const playtime = calculatePlayTime(this.props.tracks);
+  //render() {
+    const trackElements = organizeTracks()
+    const trackCount = props.tracks.length;
+    const playtime = calculatePlayTime(props.tracks);
 
     return (
     <div className="playlist">
-      <h2>{this.props.side} Playlist</h2>
+      <h2>{props.side} Playlist</h2>
       <p>
         {trackCount} tracks - {playtime}
       </p>
@@ -78,7 +72,7 @@ class Playlist extends React.Component {
       </ul>
     </div>
   );
-  }
+  //}
 }
 
 Playlist.propTypes = {
