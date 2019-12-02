@@ -11,11 +11,15 @@ import "./styles/Track.css";
 
   const handleCheckBox = () => {
     console.log("toggle in track")
-    props.toggleCallback(props.index, props.side)
+    props.toggleFavoriteCallback(props.index, props.side)
   }
 
   const handleTrackToTop = () => {
     props.moveToTopCallback(props.index, props.side)
+  }
+
+  const handleTogglePlaylist = () => {
+    props.togglePlaylistCallback(props.index, props.side)
   }
 
 
@@ -38,6 +42,7 @@ import "./styles/Track.css";
       </button>
       <button
         className="track--control track--switch"
+        onClick={handleTogglePlaylist}
         >
         <span role="img" aria-label="switch lists">↔</span>
       </button>

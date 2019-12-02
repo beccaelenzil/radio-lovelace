@@ -29,8 +29,11 @@ const Playlist = (props) => {
 //class Playlist extends React.Component {
 
   const toggleFavorite = (trackIndex, side) => {
-    console.log("toggle in playlist")
-    props.toggleCallback(trackIndex, side)
+    props.toggleFavoriteCallback(trackIndex, side)
+  }
+
+  const togglePlaylist = (trackIndex, side) => {
+    props.togglePlaylistCallback(trackIndex, side)
   }
 
   const moveToTop = (trackIndex, side) => {
@@ -47,30 +50,32 @@ const Playlist = (props) => {
             key={i}//{track.id}
             index={i}
             moveToTopCallback={moveToTop}
-            toggleCallback={toggleFavorite}
+            toggleFavoriteCallback={toggleFavorite}
+            togglePlaylistCallback={togglePlaylist}
             side={props.side}
             {...track}
           />
         );
-      });
+        });
       return trackElements
-  }
+      }
 
     const trackElements = organizeTracks()
     const trackCount = props.tracks.length;
     const playtime = calculatePlayTime(props.tracks);
 
+    
     return (
-    <div className="playlist">
-      <h2>{props.side} Playlist</h2>
-      <p>
-        {trackCount} tracks - {playtime}
-      </p>
-      <ul className="playlist--track-list">
-        {trackElements}
-      </ul>
-    </div>
-  );
+      <div className="playlist">
+        <h2>{props.side} Playlist</h2>
+        <p>
+          {trackCount} tracks - {playtime}
+        </p>
+        <ul className="playlist--track-list">
+          {trackElements}
+        </ul>
+      </div>
+    );
 }
 
 Playlist.propTypes = {
