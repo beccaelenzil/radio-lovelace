@@ -32,6 +32,7 @@ class RadioSet extends React.Component{
     let theTrack = theTracks.splice(trackIndex, 1)
 
     let oppositeSide
+
     if (side==="morningTracks"){
       oppositeSide = "eveningTracks"
     }else if (side==="eveningTracks"){
@@ -39,10 +40,12 @@ class RadioSet extends React.Component{
     }
 
     let oppositeTracks = this.state[oppositeSide]
-    oppositeTracks.push(theTrack)
-    console.log(`opposite tracks: `,oppositeTracks)
+    oppositeTracks.push(theTrack[0])
+    console.log(`opposite tracks: `,oppositeTracks);
+    console.log(theTrack);
+    console.log(oppositeSide);
 
-    this.setState({[side]: theTracks, [oppositeSide]: oppositeTracks})
+    this.setState({[side]: theTracks, [oppositeSide]: oppositeTracks});
   }
 
   render(){
